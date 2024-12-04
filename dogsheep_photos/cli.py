@@ -206,11 +206,11 @@ def apple_photos(db_path, library, image_url_prefix, image_url_suffix):
     db.conn.execute(
         """
     create table apple_photos_scores as select
-        ZGENERICASSET.ZUUID,
-        ZGENERICASSET.ZOVERALLAESTHETICSCORE,
-        ZGENERICASSET.ZCURATIONSCORE,
-        ZGENERICASSET.ZPROMOTIONSCORE,
-        ZGENERICASSET.ZHIGHLIGHTVISIBILITYSCORE,
+        ZASSET.ZUUID,
+        ZASSET.ZOVERALLAESTHETICSCORE,
+        ZASSET.ZCURATIONSCORE,
+        ZASSET.ZPROMOTIONSCORE,
+        ZASSET.ZHIGHLIGHTVISIBILITYSCORE,
         ZCOMPUTEDASSETATTRIBUTES.ZBEHAVIORALSCORE,
         ZCOMPUTEDASSETATTRIBUTES.ZFAILURESCORE,
         ZCOMPUTEDASSETATTRIBUTES.ZHARMONIOUSCOLORSCORE,
@@ -235,9 +235,9 @@ def apple_photos(db_path, library, image_url_prefix, image_url_suffix):
         ZCOMPUTEDASSETATTRIBUTES.ZWELLFRAMEDSUBJECTSCORE,
         ZCOMPUTEDASSETATTRIBUTES.ZWELLTIMEDSHOTSCORE
     from
-        attached.ZGENERICASSET
+        attached.ZASSET
         join attached.ZCOMPUTEDASSETATTRIBUTES on
-            attached.ZGENERICASSET.Z_PK = attached.ZCOMPUTEDASSETATTRIBUTES.ZASSET;
+            attached.ZASSET.Z_PK = attached.ZCOMPUTEDASSETATTRIBUTES.ZASSET;
     """
     )
     db["apple_photos_scores"].create_index(["ZUUID"])
